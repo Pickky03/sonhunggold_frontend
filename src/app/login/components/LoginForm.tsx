@@ -59,7 +59,9 @@ export default function LoginForm() {
     }
   };
 
-
+  const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
+    console.log('Failed123:', errorInfo);
+  };
 
   const formItemVariants = {
     hidden: { opacity: 0, y: 20 },
