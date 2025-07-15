@@ -4,28 +4,56 @@ import { useEffect, useState } from "react"
 import FooterCarousel from "./footer"
 import { getGoldPrice } from "@/services/EditGoldPriceService"
 import LiveClock from "./ClockLive"
-export default function TableGoldPrice() {
-const [goldPrice, setGoldPrice] = useState([])
-
 
 type GoldPriceItem = {
-  key: string;
+  _id: string;
   goldtype: string;
   buyprice: number;
   sellprice: number;
 };
 
+export default function TableGoldPrice() {
+  const [goldPrice, setGoldPrice] = useState<GoldPriceItem[]>([])
 
   useEffect(() => {     
     const fetchGoldPrice = async () => {
       const res = await getGoldPrice()
-      console.log('haha', res)
       setGoldPrice(res)
     }
     fetchGoldPrice()
   }, [])
 
-
+  // Component thẻ giá vàng cho mobile
+  const renderMobileCard = (item: GoldPriceItem, index: number) => (
+    <div 
+      key={item._id ?? index}
+      className={`p-3 rounded-lg border border-yellow-400/30 mb-2 ${
+        index % 2 === 0 ? "bg-black/20" : "bg-black/10"
+      }`}
+    >
+      <div className="text-center mb-2">
+        <h3 className="text-yellow-300 font-bold text-base">{item.goldtype ?? "---"}</h3>
+      </div>
+      <div className="grid grid-cols-2 gap-2">
+        <div className="bg-black/20 p-2 rounded-md">
+          <p className="text-gray-300 text-xs mb-1">Mua vào:</p>
+          <p className="text-white font-semibold text-sm">
+            {typeof item.buyprice === "number"
+              ? item.buyprice.toLocaleString("vi-VN")
+              : "---"}
+          </p>
+        </div>
+        <div className="bg-black/20 p-2 rounded-md">
+          <p className="text-gray-300 text-xs mb-1">Bán ra:</p>
+          <p className="text-white font-semibold text-sm">
+            {typeof item.sellprice === "number"
+              ? item.sellprice.toLocaleString("vi-VN")
+              : "---"}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -48,40 +76,47 @@ type GoldPriceItem = {
           {/* Price Table - Left Side */}
           <div className="w-full lg:w-[60%] lg:order-1 flex flex-col">
             <div className="bg-black/30 rounded-lg border border-yellow-400/50 overflow-hidden flex-grow">
-              <table className="w-full h-full">
-                <thead>
-                  <tr className="bg-gradient-to-r from-yellow-600 to-yellow-500">
-                    <th className="py-2 px-2 text-center text-black font-bold text-xs md:text-sm">LOẠI VÀNG</th>
-                    <th className="py-2 px-2 text-center text-black font-bold text-xs md:text-sm">MUA VÀO</th>
-                    <th className="py-2 px-2 text-center text-black font-bold text-xs md:text-sm">BÁN RA</th>
-                  </tr>
-                </thead>
-                <tbody className="h-full">
-     {goldPrice.map((item: GoldPriceItem, index) => (
-    <tr
-      key={item.key ?? index} // fallback index nếu thiếu key
-      className={`border-b border-yellow-400/20 hover:bg-yellow-400/5 transition-colors ${
-        index % 2 === 0 ? "bg-black/20" : "bg-black/10"
-      }`}
-    >
-      <td className="py-1 px-2 text-center text-yellow-300 font-semibold text-xs md:text-sm">
-        {item.goldtype ?? "---"}
-      </td>
-      <td className="py-1 px-2 text-center text-white font-medium text-xs md:text-sm">
-        {typeof item.buyprice === "number"
-          ? item.buyprice.toLocaleString("vi-VN")
-          : "---"}
-      </td>
-      <td className="py-1 px-2 text-center text-white font-medium text-xs md:text-sm">
-        {typeof item.sellprice === "number"
-          ? item.sellprice.toLocaleString("vi-VN")
-          : "---"}
-      </td>
-    </tr>
-  ))}
-</tbody>
+              {/* Bảng cho desktop và tablet */}
+              <div className="hidden sm:block h-full">
+                <table className="w-full h-full">
+                  <thead>
+                    <tr className="bg-gradient-to-r from-yellow-600 to-yellow-500">
+                      <th className="py-2 px-2 text-center text-black font-bold text-xs md:text-sm">LOẠI VÀNG</th>
+                      <th className="py-2 px-2 text-center text-black font-bold text-xs md:text-sm">MUA VÀO</th>
+                      <th className="py-2 px-2 text-center text-black font-bold text-xs md:text-sm">BÁN RA</th>
+                    </tr>
+                  </thead>
+                  <tbody className="h-full">
+                    {goldPrice.map((item: GoldPriceItem, index) => (
+                      <tr
+                        key={item._id ?? index}
+                        className={`border-b border-yellow-400/20 hover:bg-yellow-400/5 transition-colors ${
+                          index % 2 === 0 ? "bg-black/20" : "bg-black/10"
+                        }`}
+                      >
+                        <td className="py-1 px-2 text-center text-yellow-300 font-semibold text-xs md:text-sm">
+                          {item.goldtype ?? "---"}
+                        </td>
+                        <td className="py-1 px-2 text-center text-white font-medium text-xs md:text-sm">
+                          {typeof item.buyprice === "number"
+                            ? item.buyprice.toLocaleString("vi-VN")
+                            : "---"}
+                        </td>
+                        <td className="py-1 px-2 text-center text-white font-medium text-xs md:text-sm">
+                          {typeof item.sellprice === "number"
+                            ? item.sellprice.toLocaleString("vi-VN")
+                            : "---"}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
 
-              </table>
+              {/* Card layout cho mobile */}
+              <div className="sm:hidden p-2">
+                {goldPrice.map(renderMobileCard)}
+              </div>
             </div>
 
             {/* Additional Info */}
@@ -101,18 +136,15 @@ type GoldPriceItem = {
               <h3 className="text-yellow-400 font-bold text-base md:text-lg mb-2 text-center">
                 BIỂU ĐỒ GIÁ VÀNG THẾ GIỚI (XAU/USD)
               </h3>
-              <div className="h-[300px] md:h-[450px]">
+              <div className="h-[250px] sm:h-[300px] md:h-[450px]">
                 <GoldChart />
               </div>
             </div>
           </div>
         </div>
-
-       
-    
       </div>
-       {/* Footer */}
-       <FooterCarousel/>
+      {/* Footer */}
+      <FooterCarousel/>
     </div>
   )
 }
