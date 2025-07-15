@@ -71,35 +71,35 @@ export default function EditGoldPricePlainTable() {
     const isEditing = editingId === item._id;
     
     return (
-      <div key={item._id} className="bg-white rounded-lg shadow-md p-4 mb-4 border border-gray-200">
-        <div className="font-medium text-lg mb-2">{item.goldtype}</div>
+      <div key={item._id} className="bg-[#6b0f0f] rounded-lg shadow-md p-4 mb-4 border border-[#d4af37]">
+        <div className="font-medium text-lg mb-2 text-[#d4af37]">{item.goldtype}</div>
         
         <div className="grid grid-cols-2 gap-2 mb-3">
           <div>
-            <div className="text-sm text-gray-500">Mua vào:</div>
+            <div className="text-sm text-[#d4af37]">Mua vào:</div>
             {isEditing ? (
               <input
                 type="number"
-                className="border rounded px-2 py-1 w-full mt-1"
+                className="border rounded px-2 py-1 w-full mt-1 bg-[#8b0000] text-[#d4af37] border-[#d4af37]"
                 value={editValues.buyprice ?? ''}
                 onChange={(e) => handleInput('buyprice', e.target.value)}
               />
             ) : (
-              <div className="font-medium">{item.buyprice.toLocaleString('vi-VN')}</div>
+              <div className="font-medium text-[#d4af37]">{item.buyprice.toLocaleString('vi-VN')}</div>
             )}
           </div>
           
           <div>
-            <div className="text-sm text-gray-500">Bán ra:</div>
+            <div className="text-sm text-[#d4af37]">Bán ra:</div>
             {isEditing ? (
               <input
                 type="number"
-                className="border rounded px-2 py-1 w-full mt-1"
+                className="border rounded px-2 py-1 w-full mt-1 bg-[#8b0000] text-[#d4af37] border-[#d4af37]"
                 value={editValues.sellprice ?? ''}
                 onChange={(e) => handleInput('sellprice', e.target.value)}
               />
             ) : (
-              <div className="font-medium">{item.sellprice.toLocaleString('vi-VN')}</div>
+              <div className="font-medium text-[#d4af37]">{item.sellprice.toLocaleString('vi-VN')}</div>
             )}
           </div>
         </div>
@@ -108,13 +108,13 @@ export default function EditGoldPricePlainTable() {
           {isEditing ? (
             <>
               <button
-                className="bg-blue-500 text-white px-3 py-1 rounded text-sm"
+                className="bg-[#d4af37] hover:bg-[#b8860b] text-[#8b0000] font-bold px-3 py-1 rounded text-sm"
                 onClick={() => saveEdit(item)}
               >
                 Lưu
               </button>
               <button
-                className="bg-gray-400 text-white px-3 py-1 rounded text-sm"
+                className="bg-gray-600 hover:bg-gray-700 text-[#d4af37] px-3 py-1 rounded text-sm border border-[#d4af37]"
                 onClick={cancelEdit}
               >
                 Hủy
@@ -122,7 +122,7 @@ export default function EditGoldPricePlainTable() {
             </>
           ) : (
             <button
-              className="bg-blue-500 text-white px-3 py-1 rounded text-sm"
+              className="bg-[#d4af37] hover:bg-[#b8860b] text-[#8b0000] font-bold px-3 py-1 rounded text-sm"
               onClick={() => startEdit(item)}
             >
               Sửa
@@ -134,29 +134,29 @@ export default function EditGoldPricePlainTable() {
   };
 
   return (
-    <div className="p-4">
+    <div >
       {/* Bảng cho desktop */}
       <div className="hidden md:block">
-        <table className="w-full border border-collapse border-gray-400">
+        <table className="w-full border border-collapse border-[#d4af37] rounded-lg overflow-hidden">
           <thead>
-            <tr className="bg-gray-200 text-left">
-              <th className="border px-3 py-2">Loại vàng</th>
-              <th className="border px-3 py-2">Mua vào</th>
-              <th className="border px-3 py-2">Bán ra</th>
-              <th className="border px-3 py-2">Hành động</th>
+            <tr className="bg-[#d4af37] text-center font-bold">
+              <th className="border border-[#d4af37] px-3 py-2">LOẠI VÀNG</th>
+              <th className="border border-[#d4af37] px-3 py-2">MUA VÀO</th>
+              <th className="border border-[#d4af37] px-3 py-2">BÁN RA</th>
+              <th className="border border-[#d4af37] px-3 py-2">HÀNH ĐỘNG</th>
             </tr>
           </thead>
           <tbody>
             {data.map((item) => {
               const isEditing = editingId === item._id;
               return (
-                <tr key={item._id} className="odd:bg-white even:bg-gray-50">
-                  <td className="border px-3 py-2">{item.goldtype}</td>
-                  <td className="border px-3 py-2">
+                <tr key={item._id} className="bg-[#6b0f0f] text-[#d4af37] text-center">
+                  <td className="border border-[#d4af37] px-3 py-2 font-bold">{item.goldtype}</td>
+                  <td className="border border-[#d4af37] px-3 py-2">
                     {isEditing ? (
                       <input
                         type="number"
-                        className="border rounded px-2 py-1 w-full"
+                        className="border rounded px-2 py-1 w-full bg-[#8b0000] text-[#d4af37] border-[#d4af37]"
                         value={editValues.buyprice ?? ''}
                         onChange={(e) =>
                           handleInput('buyprice', e.target.value)
@@ -166,11 +166,11 @@ export default function EditGoldPricePlainTable() {
                       item.buyprice.toLocaleString('vi-VN')
                     )}
                   </td>
-                  <td className="border px-3 py-2">
+                  <td className="border border-[#d4af37] px-3 py-2">
                     {isEditing ? (
                       <input
                         type="number"
-                        className="border rounded px-2 py-1 w-full"
+                        className="border rounded px-2 py-1 w-full bg-[#8b0000] text-[#d4af37] border-[#d4af37]"
                         value={editValues.sellprice ?? ''}
                         onChange={(e) =>
                           handleInput('sellprice', e.target.value)
@@ -180,17 +180,17 @@ export default function EditGoldPricePlainTable() {
                       item.sellprice.toLocaleString('vi-VN')
                     )}
                   </td>
-                  <td className="border px-3 py-2 space-x-2">
+                  <td className="border border-[#d4af37] px-3 py-2 space-x-2">
                     {isEditing ? (
                       <>
                         <button
-                          className="bg-blue-500 text-white px-3 py-1 rounded"
+                          className="bg-[#d4af37] hover:bg-[#b8860b] text-[#8b0000] font-bold px-3 py-1 rounded"
                           onClick={() => saveEdit(item)}
                         >
                           Lưu
                         </button>
                         <button
-                          className="bg-gray-400 text-white px-3 py-1 rounded"
+                          className="bg-gray-600 hover:bg-gray-700 text-[#d4af37] px-3 py-1 rounded border border-[#d4af37]"
                           onClick={cancelEdit}
                         >
                           Hủy
@@ -198,7 +198,7 @@ export default function EditGoldPricePlainTable() {
                       </>
                     ) : (
                       <button
-                        className="bg-blue-500 text-white px-3 py-1 rounded"
+                        className="bg-[#d4af37] hover:bg-[#b8860b] text-[#8b0000] font-bold px-3 py-1 rounded"
                         onClick={() => startEdit(item)}
                       >
                         Sửa

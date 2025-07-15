@@ -20,9 +20,7 @@ export default function LoginForm() {
     try {
       const res = await login(values.email!, values.password!);
 
-
       const token = res.accessToken || res.token || res.access_token;
-
 
       if (token) {
         localStorage.setItem('accessToken', token);
@@ -31,7 +29,6 @@ export default function LoginForm() {
           // Sửa lỗi kiểu dữ liệu khi giải mã token
           const decoded = jwtDecode<{ role?: string }>(token);
           const userRole = decoded?.role ? decoded.role.toLowerCase() : undefined;
-
 
           if (userRole) {
             localStorage.setItem('userRole', userRole);
@@ -60,7 +57,7 @@ export default function LoginForm() {
   };
 
   const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
-    console.log('Failed123:', errorInfo);
+    console.log('Failed:', errorInfo);
   };
 
   const formItemVariants = {
@@ -88,7 +85,7 @@ export default function LoginForm() {
     >
       {/* Email */}
       <motion.div custom={0} initial="hidden" animate="visible" variants={formItemVariants}>
-        <div className="text-[#DAA520] text-xl mb-2">Email</div>
+        <div className="text-[#DAA520] mb-2">Email</div>
         <Form.Item<FieldType>
           name="email"
           rules={[
@@ -107,7 +104,7 @@ export default function LoginForm() {
 
       {/* Password */}
       <motion.div custom={1} initial="hidden" animate="visible" variants={formItemVariants}>
-        <div className="text-[#DAA520] text-xl mb-2">Mật khẩu</div>
+        <div className="text-[#DAA520]  mb-2">Mật khẩu</div>
         <Form.Item<FieldType>
           name="password"
           rules={[{ required: true, message: 'Vui lòng nhập mật khẩu!' }]}
