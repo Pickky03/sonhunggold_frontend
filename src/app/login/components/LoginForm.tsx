@@ -28,9 +28,9 @@ export default function LoginForm() {
         localStorage.setItem('accessToken', token);
 
         try {
-          const decoded: any = jwtDecode(token);
-          const userRole = decoded?.role?.toLowerCase();
-
+          // Sửa lỗi kiểu dữ liệu khi giải mã token
+          const decoded = jwtDecode<{ role?: string }>(token);
+          const userRole = decoded?.role ? decoded.role.toLowerCase() : undefined;
 
 
           if (userRole) {
@@ -52,8 +52,8 @@ export default function LoginForm() {
         toast.error('Đăng nhập thất bại: Không tìm thấy token!');
       }
     } catch (error) {
-      console.error(' Login error:', error);
-      // @ts-expect-error
+      console.error('Login error:', error);
+      // @ts-expect-error error có thể không có thuộc tính response do kiểu dữ liệu không xác định từ phía server
       const errorMessage = error?.response?.data?.message || 'Lỗi đăng nhập!';
       toast.error(errorMessage);
     }

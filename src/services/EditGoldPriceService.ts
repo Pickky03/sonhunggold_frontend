@@ -1,7 +1,13 @@
 import axiosInstance from "@/config/axios";
 
+interface GoldPriceData {
+    _id: string;
+    goldtype: string;
+    buyprice: number;
+    sellprice: number;
+}
 
-export const editGoldPrice = async (data:any) => {
+export const editGoldPrice = async (data:GoldPriceData) => {
     try {
         const response = await axiosInstance.patch(`/goldPrice/${data._id}`, data);
         return response.data;
