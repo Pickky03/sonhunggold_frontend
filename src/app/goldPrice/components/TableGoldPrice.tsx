@@ -1,32 +1,31 @@
 "use client"
-
-import mockTableGoldPrice from "@/utils/mockTableGoldPrice"
 import GoldChart from "./Chart"
 import { useEffect, useState } from "react"
 import FooterCarousel from "./footer"
+import { getGoldPrice } from "@/services/EditGoldPriceService"
+import LiveClock from "./ClockLive"
 export default function TableGoldPrice() {
-  const [currentDateTime, setCurrentDateTime] = useState(new Date())
+const [goldPrice, setGoldPrice] = useState([])
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentDateTime(new Date())
-    }, 1000)
 
-    return () => clearInterval(timer)
+type GoldPriceItem = {
+  key: string;
+  goldtype: string;
+  buyprice: number;
+  sellprice: number;
+};
+
+
+  useEffect(() => {     
+    const fetchGoldPrice = async () => {
+      const res = await getGoldPrice()
+      console.log('haha', res)
+      setGoldPrice(res)
+    }
+    fetchGoldPrice()
   }, [])
 
-  const formatDate = (date: Date) => {
-    const days = ["Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"]
-    const day = days[date.getDay()]
-    const dateNum = date.getDate()
-    const month = date.getMonth() + 1
-    const year = date.getFullYear()
-    const hours = date.getHours().toString().padStart(2, "0")
-    const minutes = date.getMinutes().toString().padStart(2, "0")
-    const seconds = date.getSeconds().toString().padStart(2, "0")
 
-    return `${day}, Ngày ${dateNum} Tháng ${month} Năm ${year} | ${hours}:${minutes}:${seconds}`
-  }
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -42,7 +41,7 @@ export default function TableGoldPrice() {
       <div className="flex-grow bg-gradient-to-br from-[#a52a2a] to-[#8b0000] p-2 md:p-3 text-white font-sans flex flex-col">
         <div className="bg-yellow-400/10 rounded-lg p-2 border flex flex-col justify-center items-center border-yellow-400/30">
           <p className="text-lg md:text-xl font-bold text-yellow-400 mb-1">BẢNG GIÁ VÀNG HÔM NAY</p>
-          <p className="text-xs md:text-sm text-gray-300">{formatDate(currentDateTime)}</p>
+          <div className="text-xs md:text-sm text-gray-300"><LiveClock/></div>
         </div>
         
         <div className="flex flex-col lg:flex-row gap-3 mt-2 flex-grow">
@@ -58,25 +57,30 @@ export default function TableGoldPrice() {
                   </tr>
                 </thead>
                 <tbody className="h-full">
-                  {mockTableGoldPrice.map((item, index) => (
-                    <tr
-                      key={item.key}
-                      className={`border-b border-yellow-400/20 hover:bg-yellow-400/5 transition-colors ${
-                        index % 2 === 0 ? "bg-black/20" : "bg-black/10"
-                      }`}
-                    >
-                      <td className="py-1 px-2 text-center text-yellow-300 font-semibold text-xs md:text-sm">
-                        {item.goldType}
-                      </td>
-                      <td className="py-1 px-2 text-center text-white font-medium text-xs md:text-sm">
-                        {item.buyPrice.toLocaleString("vi-VN")}
-                      </td>
-                      <td className="py-1 px-2 text-center text-white font-medium text-xs md:text-sm">
-                        {item.sellPrice.toLocaleString("vi-VN")}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
+     {goldPrice.map((item: GoldPriceItem, index) => (
+    <tr
+      key={item.key ?? index} // fallback index nếu thiếu key
+      className={`border-b border-yellow-400/20 hover:bg-yellow-400/5 transition-colors ${
+        index % 2 === 0 ? "bg-black/20" : "bg-black/10"
+      }`}
+    >
+      <td className="py-1 px-2 text-center text-yellow-300 font-semibold text-xs md:text-sm">
+        {item.goldtype ?? "---"}
+      </td>
+      <td className="py-1 px-2 text-center text-white font-medium text-xs md:text-sm">
+        {typeof item.buyprice === "number"
+          ? item.buyprice.toLocaleString("vi-VN")
+          : "---"}
+      </td>
+      <td className="py-1 px-2 text-center text-white font-medium text-xs md:text-sm">
+        {typeof item.sellprice === "number"
+          ? item.sellprice.toLocaleString("vi-VN")
+          : "---"}
+      </td>
+    </tr>
+  ))}
+</tbody>
+
               </table>
             </div>
 
