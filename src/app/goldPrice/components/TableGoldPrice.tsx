@@ -47,7 +47,7 @@ export default function TableGoldPrice() {
         
         <div className="flex flex-col lg:flex-row gap-3 mt-2 flex-grow">
           {/* Price Table - Left Side */}
-          <div className="w-full lg:w-[40%] lg:order-1 flex flex-col">
+          <div className="w-full lg:w-[60%] lg:order-1 flex flex-col">
             <div className="bg-black/30 rounded-lg border border-yellow-400/50 overflow-hidden flex-grow">
               <table className="w-full h-full">
                 <thead>
@@ -92,12 +92,12 @@ export default function TableGoldPrice() {
           </div>
 
           {/* Chart - Right Side */}
-          <div className="w-full lg:w-[60%] lg:order-2">
+          <div className="w-full lg:w-[40%] lg:order-2">
             <div className="bg-black/30 rounded-lg border border-yellow-400/50 p-2 h-full">
               <h3 className="text-yellow-400 font-bold text-base md:text-lg mb-2 text-center">
                 BIỂU ĐỒ GIÁ VÀNG THẾ GIỚI (XAU/USD)
               </h3>
-              <div className="h-[300px] md:h-[350px]">
+              <div className="h-[300px] md:h-[450px]">
                 <GoldChart />
               </div>
             </div>
