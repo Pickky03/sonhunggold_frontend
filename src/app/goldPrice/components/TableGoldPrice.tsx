@@ -81,9 +81,9 @@ export default function TableGoldPrice() {
                 <table className="w-full h-full">
                   <thead>
                     <tr className="bg-gradient-to-r from-yellow-600 to-yellow-500">
-                      <th className="py-3 px-4 text-center text-black font-bold text-xl md:text-2xl">LOẠI VÀNG</th>
-                      <th className="py-3 px-4 text-center text-black font-bold text-xl md:text-2xl">MUA VÀO</th>
-                      <th className="py-3 px-4 text-center text-black font-bold text-xl md:text-2xl">BÁN RA</th>
+                      <th className="py-4 px-6 text-center text-black font-bold text-3xl md:text-2xl">LOẠI VÀNG</th>
+                      <th className="py-4 px-6 text-center text-black font-bold text-3xl md:text-2xl">MUA VÀO</th>
+                      <th className="py-4 px-6 text-center text-black font-bold text-3xl md:text-2xl">BÁN RA</th>
                     </tr>
                   </thead>
                   <tbody className="h-full">
@@ -94,15 +94,15 @@ export default function TableGoldPrice() {
                           index % 2 === 0 ? "bg-black/20" : "bg-black/10"
                         }`}
                       >
-                        <td className="py-2 px-4 text-center text-yellow-300 font-semibold text-4xl md:text-2xl">
+                        <td className="py-4 px-8 text-center text-yellow-300 font-semibold text-9xl md:text-2xl">
                           {item.goldtype ?? "---"}
                         </td>
-                        <td className="py-2 px-4 text-center text-white font-semibold text-4xl md:text-2xl">
+                        <td className="py-4 px-8 text-center text-white font-semibold text-9xl md:text-2xl">
                           {typeof item.buyprice === "number"
                             ? item.buyprice.toLocaleString("vi-VN")
                             : "---"}
                         </td>
-                        <td className="py-2 px-4 text-center text-white font-semibold text-4xl md:text-2xl">
+                        <td className="py-4 px-8 text-center text-white font-semibold text-9xl md:text-2xl">
                           {typeof item.sellprice === "number"
                             ? item.sellprice.toLocaleString("vi-VN")
                             : "---"}
