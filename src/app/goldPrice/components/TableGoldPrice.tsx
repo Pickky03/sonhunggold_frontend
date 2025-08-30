@@ -27,25 +27,25 @@ export default function TableGoldPrice() {
   const renderMobileCard = (item: GoldPriceItem, index: number) => (
     <div 
       key={item._id ?? index}
-      className={`p-3 rounded-lg border border-yellow-400/30 mb-2 ${
+      className={`p-10 rounded-2xl border-4 border-yellow-400/50 mb-6 ${
         index % 2 === 0 ? "bg-black/20" : "bg-black/10"
       }`}
     >
-      <div className="text-center mb-2">
-        <h3 className="text-yellow-300 font-bold text-base">{item.goldtype ?? "---"}</h3>
+      <div className="text-center mb-6">
+        <h3 className="text-yellow-300 font-bold text-5xl lg:text-7xl">{item.goldtype ?? "---"}</h3>
       </div>
-      <div className="grid grid-cols-2 gap-2">
-        <div className="bg-black/20 p-2 rounded-md">
-          <p className="text-gray-300 text-xs mb-1">Mua vào:</p>
-          <p className="text-white font-semibold text-sm">
+      <div className="grid grid-cols-2 gap-8">
+        <div className="bg-black/20 p-8 rounded-xl">
+          <p className="text-gray-300 text-3xl mb-4">Mua vào:</p>
+          <p className="text-white font-semibold text-5xl lg:text-7xl">
             {typeof item.buyprice === "number"
               ? item.buyprice.toLocaleString("vi-VN")
               : "---"}
           </p>
         </div>
-        <div className="bg-black/20 p-2 rounded-md">
-          <p className="text-gray-300 text-xs mb-1">Bán ra:</p>
-          <p className="text-white font-semibold text-sm">
+        <div className="bg-black/20 p-8 rounded-xl">
+          <p className="text-gray-300 text-3xl mb-4">Bán ra:</p>
+          <p className="text-white font-semibold text-5xl lg:text-7xl">
             {typeof item.sellprice === "number"
               ? item.sellprice.toLocaleString("vi-VN")
               : "---"}
@@ -81,28 +81,28 @@ export default function TableGoldPrice() {
                 <table className="w-full h-full">
                   <thead>
                     <tr className="bg-gradient-to-r from-yellow-600 to-yellow-500">
-                      <th className="py-3 px-4 text-center text-black font-bold text-xl md:text-2xl">LOẠI VÀNG</th>
-                      <th className="py-3 px-4 text-center text-black font-bold text-xl md:text-2xl">MUA VÀO</th>
-                      <th className="py-3 px-4 text-center text-black font-bold text-xl md:text-2xl">BÁN RA</th>
+                      <th className="py-8 px-8 text-center text-black font-bold text-6xl lg:text-8xl">LOẠI VÀNG</th>
+                      <th className="py-8 px-8 text-center text-black font-bold text-6xl lg:text-8xl">MUA VÀO</th>
+                      <th className="py-8 px-8 text-center text-black font-bold text-6xl lg:text-8xl">BÁN RA</th>
                     </tr>
                   </thead>
                   <tbody className="h-full">
                     {goldPrice.map((item: GoldPriceItem, index) => (
                       <tr
                         key={item._id ?? index}
-                        className={`border-b border-yellow-400/20 hover:bg-yellow-400/5 transition-colors ${
+                        className={`border-b-4 border-yellow-400/40 hover:bg-yellow-400/10 transition-colors ${
                           index % 2 === 0 ? "bg-black/20" : "bg-black/10"
                         }`}
                       >
-                        <td className="py-2 px-4 text-center text-yellow-300 font-semibold text-4xl md:text-2xl">
+                        <td className="py-6 px-8 text-center text-yellow-300 font-semibold text-5xl lg:text-7xl">
                           {item.goldtype ?? "---"}
                         </td>
-                        <td className="py-2 px-4 text-center text-white font-semibold text-4xl md:text-2xl">
+                        <td className="py-6 px-8 text-center text-white font-extrabold text-5xl lg:text-7xl">
                           {typeof item.buyprice === "number"
                             ? item.buyprice.toLocaleString("vi-VN")
                             : "---"}
                         </td>
-                        <td className="py-2 px-4 text-center text-white font-semibold text-4xl md:text-2xl">
+                        <td className="py-6 px-8 text-center text-white font-medium text-5xl lg:text-7xl">
                           {typeof item.sellprice === "number"
                             ? item.sellprice.toLocaleString("vi-VN")
                             : "---"}
