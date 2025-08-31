@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { getGoldPrice, editGoldPrice } from '@/services/EditGoldPriceService';
 import { toast } from 'sonner';
+import {NumericFormat } from 'react-number-format';
 
 interface DataType {
   _id: string;
@@ -59,51 +60,62 @@ export default function EditGoldPricePlainTable() {
     setEditValues({});
   };
 
-  const handleInput = (field: keyof DataType, value: string) => {
-    setEditValues((prev) => ({
-      ...prev,
-      [field]: Number(value),
-    }));
-  };
-
   // Hiển thị dạng thẻ cho mobile
   const renderMobileCard = (item: DataType) => {
     const isEditing = editingId === item._id;
-    
+
     return (
       <div key={item._id} className="bg-[#6b0f0f] rounded-lg shadow-md p-4 mb-4 border border-[#d4af37]">
         <div className="font-medium text-lg mb-2 text-[#d4af37]">{item.goldtype}</div>
-        
+
         <div className="grid grid-cols-2 gap-2 mb-3">
           <div>
             <div className="text-sm text-[#d4af37]">Mua vào:</div>
             {isEditing ? (
-              <input
-                type="number"
-                className="border rounded px-2 py-1 w-full mt-1 bg-[#8b0000] text-[#d4af37] border-[#d4af37]"
+              <NumericFormat
+                thousandSeparator="."
+                decimalSeparator=","
+                allowNegative={false}
                 value={editValues.buyprice ?? ''}
-                onChange={(e) => handleInput('buyprice', e.target.value)}
+                onValueChange={(values) => {
+                  setEditValues((prev) => ({
+                    ...prev,
+                    buyprice: Number(values.value),
+                  }));
+                }}
+                className="border rounded px-2 py-1 w-full mt-1 bg-[#8b0000] text-[#d4af37] border-[#d4af37]"
               />
             ) : (
-              <div className="font-medium text-[#d4af37]">{item.buyprice.toLocaleString('vi-VN')}</div>
+              <div className="font-medium text-[#d4af37]">
+                {item.buyprice.toLocaleString('vi-VN')}
+              </div>
             )}
           </div>
-          
+
           <div>
             <div className="text-sm text-[#d4af37]">Bán ra:</div>
             {isEditing ? (
-              <input
-                type="number"
-                className="border rounded px-2 py-1 w-full mt-1 bg-[#8b0000] text-[#d4af37] border-[#d4af37]"
+              <NumericFormat
+                thousandSeparator="."
+                decimalSeparator=","
+                allowNegative={false}
                 value={editValues.sellprice ?? ''}
-                onChange={(e) => handleInput('sellprice', e.target.value)}
+                onValueChange={(values) => {
+                  setEditValues((prev) => ({
+                    ...prev,
+                    sellprice: Number(values.value),
+                  }));
+                }}
+                className="border rounded px-2 py-1 w-full mt-1 bg-[#8b0000] text-[#d4af37] border-[#d4af37]"
               />
             ) : (
-              <div className="font-medium text-[#d4af37]">{item.sellprice.toLocaleString('vi-VN')}</div>
+              <div className="font-medium text-[#d4af37]">
+                {item.sellprice.toLocaleString('vi-VN')}
+              </div>
             )}
           </div>
         </div>
-        
+
         <div className="flex justify-end space-x-2">
           {isEditing ? (
             <>
@@ -134,7 +146,7 @@ export default function EditGoldPricePlainTable() {
   };
 
   return (
-    <div >
+    <div>
       {/* Bảng cho desktop */}
       <div className="hidden md:block">
         <table className="w-full border border-collapse border-[#d4af37] rounded-lg overflow-hidden">
@@ -154,13 +166,18 @@ export default function EditGoldPricePlainTable() {
                   <td className="border border-[#d4af37] px-3 py-2 font-bold">{item.goldtype}</td>
                   <td className="border border-[#d4af37] px-3 py-2">
                     {isEditing ? (
-                      <input
-                        type="number"
-                        className="border rounded px-2 py-1 w-full bg-[#8b0000] text-[#d4af37] border-[#d4af37]"
+                      <NumericFormat
+                        thousandSeparator="."
+                        decimalSeparator=","
+                        allowNegative={false}
                         value={editValues.buyprice ?? ''}
-                        onChange={(e) =>
-                          handleInput('buyprice', e.target.value)
-                        }
+                        onValueChange={(values) => {
+                          setEditValues((prev) => ({
+                            ...prev,
+                            buyprice: Number(values.value),
+                          }));
+                        }}
+                        className="border rounded px-2 py-1 w-full bg-[#8b0000] text-[#d4af37] border-[#d4af37]"
                       />
                     ) : (
                       item.buyprice.toLocaleString('vi-VN')
@@ -168,13 +185,18 @@ export default function EditGoldPricePlainTable() {
                   </td>
                   <td className="border border-[#d4af37] px-3 py-2">
                     {isEditing ? (
-                      <input
-                        type="number"
-                        className="border rounded px-2 py-1 w-full bg-[#8b0000] text-[#d4af37] border-[#d4af37]"
+                      <NumericFormat
+                        thousandSeparator="."
+                        decimalSeparator=","
+                        allowNegative={false}
                         value={editValues.sellprice ?? ''}
-                        onChange={(e) =>
-                          handleInput('sellprice', e.target.value)
-                        }
+                        onValueChange={(values) => {
+                          setEditValues((prev) => ({
+                            ...prev,
+                            sellprice: Number(values.value),
+                          }));
+                        }}
+                        className="border rounded px-2 py-1 w-full bg-[#8b0000] text-[#d4af37] border-[#d4af37]"
                       />
                     ) : (
                       item.sellprice.toLocaleString('vi-VN')
