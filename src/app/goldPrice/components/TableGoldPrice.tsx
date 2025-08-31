@@ -128,11 +128,11 @@ export default function TableGoldPrice() {
             </div>
 
             {/* Additional Info */}
-            <div className="mt-2 bg-black/30 rounded-lg border border-yellow-400/30 p-2 2xl:p-6 2xl:h-[10%]">
-              <p className="text-yellow-400 font-semibold text-center text-xs md:text-sm xl:text-lg 2xl:text-3xl">
+            <div className="mt-2 bg-black/30 rounded-lg border border-yellow-400/30 p-2 2xl:p-4 2xl:h-[15%]">
+              <p className="text-yellow-400 font-semibold text-center text-xs md:text-sm xl:text-lg 2xl:text-lg">
                 Đơn vị: 1000 VNĐ/chỉ | Cập nhật liên tục
               </p>
-              <p className="text-gray-300 text-center text-xs mt-1 xl:text-lg 2xl:text-2xl">
+              <p className="text-gray-300 text-center text-xs mt-1 xl:text-lg 2xl:text-lg">
                 * Giá có thể thay đổi theo thời gian thực
               </p>
             </div>
@@ -144,17 +144,17 @@ export default function TableGoldPrice() {
               <h3 className="text-yellow-400 font-bold text-base md:text-lg xl:text-2xl 2xl:text-2xl mb-2 text-center">
                 BIỂU ĐỒ GIÁ VÀNG THẾ GIỚI (XAU/USD)
               </h3>
-              <div className="h-[250px] sm:h-[300px] md:h-[450px] 2xl:h-[300px] w-full">
+              <div className="h-[250px] sm:h-[300px] md:h-[450px] 2xl:h-[500px] w-full">
                 <GoldChart />
               </div>
               {/* Chỉ hiển thị ở màn hình 2xl */}
-              <div className="hidden 2xl:flex mt-4 w-full justify-center items-end 2xl:h-[200px]">
+              {/* <div className="hidden 2xl:flex mt-4 w-full justify-center items-end 2xl:h-[200px]">
                 <img
                   src="/neko5.gif"
                   alt="neko"
                   className="w-[350px] h-[200px] mb-3"
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
