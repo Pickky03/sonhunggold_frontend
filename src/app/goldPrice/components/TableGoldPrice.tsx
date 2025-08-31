@@ -32,20 +32,20 @@ export default function TableGoldPrice() {
       }`}
     >
       <div className="text-center mb-6">
-        <h3 className="text-yellow-300 font-bold text-5xl lg:text-7xl">{item.goldtype ?? "---"}</h3>
+        <h3 className="text-yellow-300 font-bold text-xl lg:text-7xl">{item.goldtype ?? "---"}</h3>
       </div>
       <div className="grid grid-cols-2 gap-8">
-        <div className="bg-black/20 p-8 rounded-xl">
-          <p className="text-gray-300 text-3xl mb-4">Mua vào:</p>
-          <p className="text-white font-semibold text-5xl lg:text-7xl">
+        <div className="bg-black/20 p-6 rounded-xl">
+          <p className="text-gray-300 text-base mb-4">Mua vào:</p>
+          <p className="text-white font-semibold text-base lg:text-xl">
             {typeof item.buyprice === "number"
               ? item.buyprice.toLocaleString("vi-VN")
               : "---"}
           </p>
         </div>
-        <div className="bg-black/20 p-8 rounded-xl">
-          <p className="text-gray-300 text-3xl mb-4">Bán ra:</p>
-          <p className="text-white font-semibold text-5xl lg:text-7xl">
+        <div className="bg-black/20 p-6 rounded-xl">
+          <p className="text-gray-300 text-base mb-4">Bán ra:</p>
+          <p className="text-white font-semibold text-base lg:text-xl">
             {typeof item.sellprice === "number"
               ? item.sellprice.toLocaleString("vi-VN")
               : "---"}
@@ -56,34 +56,34 @@ export default function TableGoldPrice() {
   );
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen 2xl:h-screen 2xl:overflow-hidden">
       {/* Header */}
       <div className="text-center bg-black border border-yellow-400/50 py-2">
         <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
-          <h1 className="text-xl md:text-3xl xl:text-5xl 2xl:text-7xl font-bold mb-1">
+          <h1 className="text-xl md:text-3xl xl:text-5xl 2xl:text-3xl font-bold mb-1">
             DOANH NGHIỆP VÀNG BẠC SƠN HÙNG
           </h1>
         </div>
-        <p className="text-yellow-300 text-base md:text-lg xl:text-2xl 2xl:text-6xl font-semibold mb-1">
+        {/* <p className="text-yellow-300 text-base md:text-lg xl:text-2xl 2xl:text-3xl font-semibold mb-1">
           GIỮ TÍN NHIỆM HƠN GIỮ VÀNG
-        </p>
+        </p> */}
       </div>
 
       {/* Main Content */}
-      <div className="flex-grow bg-gradient-to-br from-[#a52a2a] to-[#8b0000] p-2 md:p-3 2xl:p-8 text-white font-sans flex flex-col">
-        <div className="bg-yellow-400/10 rounded-lg p-2 2xl:p-6 border flex flex-col justify-center items-center border-yellow-400/30">
-          <p className="text-lg md:text-xl xl:text-3xl 2xl:text-6xl font-bold text-yellow-400 mb-1">
+      <div className="flex-grow bg-gradient-to-br from-[#a52a2a] to-[#8b0000] p-2 md:p-3 2xl:p-4 text-white font-sans flex flex-col 2xl:h-[calc(100vh-120px)] 2xl:overflow-hidden">
+        <div className="bg-yellow-400/10 rounded-lg p-2 2xl:p-2 border flex flex-col justify-center items-center border-yellow-400/30">
+          <p className="text-lg md:text-xl xl:text-3xl 2xl:text-3xl font-bold text-yellow-400 mb-1">
             BẢNG GIÁ VÀNG HÔM NAY
           </p>
-          <div className="text-xs md:text-sm xl:text-lg 2xl:text-4xl  text-gray-300">
+          <div className="text-xs md:text-sm xl:text-lg 2xl:text-xl  text-gray-300">
             <LiveClock/>
           </div>
         </div>
         
-        <div className="flex flex-col lg:flex-row gap-3 mt-2 flex-grow">
+        <div className="flex flex-col lg:flex-row gap-3 mt-2 flex-grow 2xl:h-full">
           {/* Price Table - Left Side */}
-          <div className="w-full lg:w-[60%] 2xl:w-[70%] lg:order-1 flex flex-col">
-            <div className="bg-black/30 rounded-lg border border-yellow-400/50 overflow-hidden flex-grow">
+          <div className="w-full lg:w-[60%] 2xl:w-[75%] lg:order-1 flex flex-col 2xl:h-full">
+            <div className="bg-black/30 rounded-lg border border-yellow-400/50 overflow-hidden flex-grow 2xl:h-[100%]">
               {/* Bảng cho desktop và tablet */}
               <div className="hidden sm:block h-full">
                 <table className="w-full h-full">
@@ -128,7 +128,7 @@ export default function TableGoldPrice() {
             </div>
 
             {/* Additional Info */}
-            <div className="mt-2 bg-black/30 rounded-lg border border-yellow-400/30 p-2 2xl:p-6">
+            <div className="mt-2 bg-black/30 rounded-lg border border-yellow-400/30 p-2 2xl:p-6 2xl:h-[10%]">
               <p className="text-yellow-400 font-semibold text-center text-xs md:text-sm xl:text-lg 2xl:text-3xl">
                 Đơn vị: 1000 VNĐ/chỉ | Cập nhật liên tục
               </p>
@@ -139,20 +139,20 @@ export default function TableGoldPrice() {
           </div>
 
           {/* Chart - Right Side */}
-          <div className="w-full lg:w-[40%] 2xl:w-[30%]  lg:order-2">
-            <div className="bg-black/30 rounded-lg border border-yellow-400/50 p-2 2xl:p-4 h-full flex flex-col items-center">
-              <h3 className="text-yellow-400 font-bold text-base md:text-lg xl:text-2xl 2xl:text-4xl mb-2 text-center">
+          <div className="w-full lg:w-[40%] 2xl:w-[25%]  lg:order-2 2xl:h-full flex flex-col">
+            <div className="bg-black/30 rounded-lg border border-yellow-400/50 p-2 2xl:p-4 h-full flex flex-col items-center 2xl:h-full">
+              <h3 className="text-yellow-400 font-bold text-base md:text-lg xl:text-2xl 2xl:text-2xl mb-2 text-center">
                 BIỂU ĐỒ GIÁ VÀNG THẾ GIỚI (XAU/USD)
               </h3>
-              <div className="h-[250px] sm:h-[300px] md:h-[450px] 2xl:h-[550px] w-full">
+              <div className="h-[250px] sm:h-[300px] md:h-[450px] 2xl:h-[300px] w-full">
                 <GoldChart />
               </div>
               {/* Chỉ hiển thị ở màn hình 2xl */}
-              <div className="hidden 2xl:block mt-4 w-full justify-center">
+              <div className="hidden 2xl:flex mt-4 w-full justify-center items-end 2xl:h-[200px]">
                 <img
                   src="/neko5.gif"
                   alt="neko"
-                  className="w-auto h-auto" // tăng kích thước gif
+                  className="w-[350px] h-[200px] mb-3"
                 />
               </div>
             </div>
@@ -160,7 +160,9 @@ export default function TableGoldPrice() {
         </div>
       </div>
       {/* Footer */}
-      <FooterCarousel/>
+      <div className="2xl:h-[30px]">
+        <FooterCarousel/>
+      </div>
     </div>
   )
 }
