@@ -150,9 +150,9 @@ export default function TableGoldPrice() {
               {/* Chỉ hiển thị ở màn hình 2xl */}
               <div className="hidden 2xl:block mt-4 w-full justify-center">
                 <img
-                  src="/neko.gif"
+                  src="/neko5.gif"
                   alt="neko"
-                  className="w-[650px] h-auto border-r-8" // tăng kích thước gif
+                  className="w-auto h-auto" // tăng kích thước gif
                 />
               </div>
             </div>
