@@ -75,23 +75,23 @@ export default function TableGoldPrice() {
           <p className="text-lg md:text-xl xl:text-3xl 2xl:text-6xl font-bold text-yellow-400 mb-1">
             BẢNG GIÁ VÀNG HÔM NAY
           </p>
-          <div className="text-xs md:text-sm xl:text-lg 2xl:text-3xl text-gray-300">
+          <div className="text-xs md:text-sm xl:text-lg 2xl:text-4xl  text-gray-300">
             <LiveClock/>
           </div>
         </div>
         
         <div className="flex flex-col lg:flex-row gap-3 mt-2 flex-grow">
           {/* Price Table - Left Side */}
-          <div className="w-full lg:w-[60%] 2xl:w-[65%] lg:order-1 flex flex-col">
+          <div className="w-full lg:w-[60%] 2xl:w-[70%] lg:order-1 flex flex-col">
             <div className="bg-black/30 rounded-lg border border-yellow-400/50 overflow-hidden flex-grow">
               {/* Bảng cho desktop và tablet */}
               <div className="hidden sm:block h-full">
                 <table className="w-full h-full">
                   <thead>
                     <tr className="bg-gradient-to-r from-yellow-600 to-yellow-500">
-                      <th className="py-2 px-2 text-center text-black font-bold text-xs md:text-sm xl:text-3xl 2xl:text-7xl">LOẠI VÀNG</th>
-                      <th className="py-2 px-2 text-center text-black font-bold text-xs md:text-sm xl:text-3xl 2xl:text-7xl">MUA VÀO</th>
-                      <th className="py-2 px-2 text-center text-black font-bold text-xs md:text-sm xl:text-3xl 2xl:text-7xl">BÁN RA</th>
+                      <th className="py-2 px-2 text-center text-black font-bold text-xs md:text-sm xl:text-3xl 2xl:text-5xl">LOẠI VÀNG</th>
+                      <th className="py-2 px-2 text-center text-black font-bold text-xs md:text-sm xl:text-3xl 2xl:text-5xl">MUA VÀO</th>
+                      <th className="py-2 px-2 text-center text-black font-bold text-xs md:text-sm xl:text-3xl 2xl:text-5xl">BÁN RA</th>
                     </tr>
                   </thead>
                   <tbody className="h-full">
@@ -102,15 +102,15 @@ export default function TableGoldPrice() {
                           index % 2 === 0 ? "bg-black/20" : "bg-black/10"
                         }`}
                       >
-                        <td className="py-1 px-2 text-center text-yellow-300 font-semibold text-xs md:text-sm xl:text-3xl 2xl:text-7xl">
+                        <td className="py-1 px-2 text-center text-yellow-300 font-bold text-xs md:text-sm xl:text-3xl 2xl:text-5xl">
                           {item.goldtype ?? "---"}
                         </td>
-                        <td className="py-1 px-2 text-center text-white font-medium text-xs md:text-sm xl:text-3xl 2xl:text-7xl">
+                        <td className="py-1 px-2 text-center text-white font-bold text-xs md:text-sm xl:text-3xl 2xl:text-5xl">
                           {typeof item.buyprice === "number"
                             ? item.buyprice.toLocaleString("vi-VN")
                             : "---"}
                         </td>
-                        <td className="py-1 px-2 text-center text-white font-medium text-xs md:text-sm xl:text-3xl 2xl:text-7xl">
+                        <td className="py-1 px-2 text-center text-white font-bold text-xs md:text-sm xl:text-3xl 2xl:text-5xl">
                           {typeof item.sellprice === "number"
                             ? item.sellprice.toLocaleString("vi-VN")
                             : "---"}
@@ -139,7 +139,7 @@ export default function TableGoldPrice() {
           </div>
 
           {/* Chart - Right Side */}
-          <div className="w-full lg:w-[40%] 2xl:w-[35%]  lg:order-2">
+          <div className="w-full lg:w-[40%] 2xl:w-[30%]  lg:order-2">
             <div className="bg-black/30 rounded-lg border border-yellow-400/50 p-2 2xl:p-4 h-full flex flex-col items-center">
               <h3 className="text-yellow-400 font-bold text-base md:text-lg xl:text-2xl 2xl:text-4xl mb-2 text-center">
                 BIỂU ĐỒ GIÁ VÀNG THẾ GIỚI (XAU/USD)
