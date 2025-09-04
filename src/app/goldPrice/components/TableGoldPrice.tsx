@@ -60,7 +60,7 @@ export default function TableGoldPrice() {
       {/* Header */}
       <div className="text-center bg-black border border-yellow-400/50 py-2">
         <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
-          <h1 className="text-xl md:text-3xl xl:text-5xl 2xl:text-3xl font-bold mb-1">
+          <h1 className="text-xl md:text-3xl xl:text-5xl 2xl:text-7xl font-bold mb-1">
             DOANH NGHIỆP VÀNG BẠC SƠN HÙNG
           </h1>
         </div>
@@ -128,11 +128,11 @@ export default function TableGoldPrice() {
             </div>
 
             {/* Additional Info */}
-            <div className="mt-2 bg-black/30 rounded-lg border border-yellow-400/30 p-2 2xl:p-4 2xl:h-[15%]">
-              <p className="text-yellow-400 font-semibold text-center text-xs md:text-sm xl:text-lg 2xl:text-lg">
+            <div className="mt-2 bg-black/30 rounded-lg border border-yellow-400/30 p-2 2xl:p-2 2xl:h-[10%]">
+              <p className="text-yellow-400 font-semibold text-center text-xs md:text-sm xl:text-lg 2xl:text-sm">
                 Đơn vị: 1000 VNĐ/chỉ | Cập nhật liên tục
               </p>
-              <p className="text-gray-300 text-center text-xs mt-1 xl:text-lg 2xl:text-lg">
+              <p className="text-gray-300 text-center text-xs xl:text-lg 2xl:text-sm">
                 * Giá có thể thay đổi theo thời gian thực
               </p>
             </div>
