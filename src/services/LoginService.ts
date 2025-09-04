@@ -3,8 +3,7 @@ import axiosInstance from "@/config/axios";
 export const login = async (email: string, password: string) => {
     const response = await axiosInstance.post('/auth/login', { email, password });
     
-    // Lưu thông tin vai trò người dùng
-    // Kiểm tra cấu trúc dữ liệu trả về từ API
+
     if (response.data) {
         // Trường hợp 1: Vai trò nằm trong response.data.role
         if (response.data.role) {
