@@ -59,8 +59,8 @@ export default function TableGoldPrice() {
     <div className="flex flex-col min-h-screen 2xl:h-screen 2xl:overflow-hidden">
       {/* Header */}
       <div className="text-center bg-black border border-yellow-400/50 py-2">
-        <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
-          <h1 className="text-xl md:text-3xl xl:text-5xl 2xl:text-5xl font-bold mb-1">
+        <div className="bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent inline-block">
+          <h1 className="text-xl md:text-3xl xl:text-5xl 2xl:text-5xl font-bold mb-2 mt-2">
             DOANH NGHIỆP VÀNG BẠC SƠN HÙNG
           </h1>
         </div>
