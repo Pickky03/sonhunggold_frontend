@@ -21,10 +21,10 @@ export default function FooterCarousel() {
   }, []);
 
   return (
-    <Marquee gradient={false} speed={50} className="bg-black text-yellow-300 py-2 text-sm">
+    <Marquee gradient={false} speed={50} className="bg-black text-white py-4 text-lg">
       {goldPrice.length > 0 ? (
         goldPrice.map((item) => (
-          <span key={item._id} className="mx-4">
+          <span key={item._id} className="mx-4 ">
             🌟 {item.goldtype}: Mua vào: {item.buyprice.toLocaleString()} VNĐ | Bán ra: {item.sellprice.toLocaleString()} VNĐ 🌟
           </span>
         ))

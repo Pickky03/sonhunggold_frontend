@@ -160,7 +160,7 @@ export default function TableGoldPrice() {
         </div>
       </div>
       {/* Footer */}
-      <div className="2xl:h-[30px]">
+      <div className="2xl:h-[50px]">
         <FooterCarousel/>
       </div>
     </div>
