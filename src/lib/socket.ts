@@ -47,4 +47,17 @@ if (!socket.connected) {
   socket.connect();
 }
 
+socket.on("connect", () => {
+  const transport = socket.io.engine.transport.name;
+  alert(`✅ Kết nối socket thành công!\nID: ${socket.id}\nTransport: ${transport}`);
+});
+
+socket.on("connect_error", (err) => {
+  alert(`❌ Không kết nối socket được:\n${err.message}`);
+});
+
+socket.on("disconnect", (reason) => {
+  alert(`⚠️ Mất kết nối socket:\n${reason}`);
+});
+
 export default socket;
