@@ -6,15 +6,16 @@ const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL;
 
 // Cấu hình socket với nhiều tùy chọn để đảm bảo kết nối ổn định
 const socketOptions = {
-  path: '/socket.io',
-  transports: ['websocket'], // Chỉ sử dụng websocket, không dùng polling
+  path: "/socket.io",
+  transports: ["polling", "websocket"], // fallback luôn được bật
   reconnection: true,
   reconnectionAttempts: 10,
   reconnectionDelay: 1000,
   reconnectionDelayMax: 5000,
   timeout: 20000,
   autoConnect: true,
-  forceNew: false
+  forceNew: false,
+  withCredentials: true,
 };
 
 console.log('🔌 Kết nối socket tới:', SOCKET_URL);
