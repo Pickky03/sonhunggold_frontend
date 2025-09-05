@@ -1,7 +1,5 @@
 import Marquee from "react-fast-marquee";
-import { getGoldPrice } from '@/services/EditGoldPriceService';
-import { useEffect, useState } from "react";
-import useGiaVangSocket, { GoldPriceItem } from "@/hooks/useGiaVangSocket";
+import useGiaVangSocket from "@/hooks/useGiaVangSocket";
 
 export default function FooterCarousel() {
   const goldPrice = useGiaVangSocket();

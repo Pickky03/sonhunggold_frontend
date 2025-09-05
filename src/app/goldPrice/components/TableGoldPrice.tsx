@@ -1,8 +1,6 @@
 "use client"
 import GoldChart from "./Chart"
-import { useEffect, useState } from "react"
 import FooterCarousel from "./footer"
-import { getGoldPrice } from "@/services/EditGoldPriceService"
 import LiveClock from "./ClockLive"
 import useGiaVangSocket, {GoldPriceItem} from "@/hooks/useGiaVangSocket"
 
