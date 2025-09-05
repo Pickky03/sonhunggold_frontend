@@ -15,7 +15,7 @@ const socketOptions = {
   timeout: 20000,
   autoConnect: true,
   forceNew: false,
-  withCredentials: true,
+  withCredentials: false,
 };
 
 console.log('🔌 Kết nối socket tới:', SOCKET_URL);
