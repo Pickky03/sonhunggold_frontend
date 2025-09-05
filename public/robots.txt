@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://sonhunggold-frontend.vercel.app
-
-# Sitemaps
-Sitemap: https://sonhunggold-frontend.vercel.app/sitemap.xml
