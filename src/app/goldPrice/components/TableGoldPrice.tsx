@@ -4,24 +4,15 @@ import { useEffect, useState } from "react"
 import FooterCarousel from "./footer"
 import { getGoldPrice } from "@/services/EditGoldPriceService"
 import LiveClock from "./ClockLive"
+import useGiaVangSocket, {GoldPriceItem} from "@/hooks/useGiaVangSocket"
 
-type GoldPriceItem = {
-  _id: string;
-  goldtype: string;
-  buyprice: number;
-  sellprice: number;
-};
 
 export default function TableGoldPrice() {
-  const [goldPrice, setGoldPrice] = useState<GoldPriceItem[]>([])
 
-  useEffect(() => {     
-    const fetchGoldPrice = async () => {
-      const res = await getGoldPrice()
-      setGoldPrice(res)
-    }
-    fetchGoldPrice()
-  }, [])
+
+const goldPrice = useGiaVangSocket()
+console.log('Table: goldPrice state updated:', goldPrice);
+
 
   // Component thẻ giá vàng cho mobile
   const renderMobileCard = (item: GoldPriceItem, index: number) => (
@@ -95,7 +86,7 @@ export default function TableGoldPrice() {
                     </tr>
                   </thead>
                   <tbody className="h-full">
-                    {goldPrice.map((item: GoldPriceItem, index) => (
+                    {goldPrice.map((item: GoldPriceItem, index:number) => (
                       <tr
                         key={item._id ?? index}
                         className={`border-b-4 border-yellow-400/40 hover:bg-yellow-400/10 transition-colors ${

@@ -21,6 +21,7 @@
     "react-dom": "^19.0.0",
     "react-fast-marquee": "^1.6.5",
     "react-number-format": "^5.4.4",
+    "socket.io-client": "^4.8.1",
     "sonner": "^2.0.6"
   },
   "devDependencies": {
