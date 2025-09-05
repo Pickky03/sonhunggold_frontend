@@ -6,6 +6,7 @@ const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL;
 
 // Cấu hình socket với nhiều tùy chọn để đảm bảo kết nối ổn định
 const socketOptions = {
+  path: '/socket.io/',
   transports: ['websocket'], // Chỉ sử dụng websocket, không dùng polling
   reconnection: true,
   reconnectionAttempts: 10,
