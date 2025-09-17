@@ -61,12 +61,9 @@ console.log('Table: goldPrice state updated:', goldPrice);
       {/* Main Content */}
       <div className="flex-grow bg-gradient-to-br from-[#a52a2a] to-[#8b0000] p-2 md:p-3 2xl:p-4 text-white font-sans flex flex-col 2xl:h-[calc(100vh-120px)] 2xl:overflow-hidden">
         <div className="bg-yellow-400/10 rounded-lg p-2 2xl:p-2 border flex flex-col justify-center items-center border-yellow-400/30">
-          <p className="text-lg md:text-xl xl:text-3xl 2xl:text-3xl font-bold text-yellow-400 mb-1">
+          <p className="text-lg md:text-xl xl:text-3xl 2xl:text-4xl font-bold text-yellow-400 mb-1">
             BẢNG GIÁ VÀNG HÔM NAY
-          </p>
-          <div className="text-xs md:text-sm xl:text-lg 2xl:text-xl  text-gray-300">
-            <LiveClock/>
-          </div>
+          </p>        
         </div>
         
         <div className="flex flex-col lg:flex-row gap-3 mt-2 flex-grow 2xl:h-full">
@@ -130,6 +127,9 @@ console.log('Table: goldPrice state updated:', goldPrice);
           {/* Chart - Right Side */}
           <div className="w-full lg:w-[40%] 2xl:w-[25%]  lg:order-2 2xl:h-full flex flex-col">
             <div className="bg-black/30 rounded-lg border border-yellow-400/50 p-2 2xl:p-4 h-full flex flex-col items-center 2xl:h-full">
+             <div className="text-xs md:text-sm xl:text-lg 2xl:text-2xl text-gray-300">
+            <LiveClock/>
+          </div>
               <h3 className="text-yellow-400 font-bold text-base md:text-lg xl:text-2xl 2xl:text-2xl mb-2 text-center">
                 BIỂU ĐỒ GIÁ VÀNG THẾ GIỚI (XAU/USD)
               </h3>
