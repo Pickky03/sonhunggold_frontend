@@ -24,6 +24,6 @@ export default function LiveClock() {
   };
 
   return (
-    <p className="text-xs md:text-sm text-gray-300">{formatDate(now)}</p>
+    <p className="text-xs md:text-sm 2xl:text-xl text-gray-300">{formatDate(now)}</p>
   );
 }
