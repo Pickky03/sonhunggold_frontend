@@ -119,10 +119,10 @@ console.log('Table: goldPrice state updated:', goldPrice);
 
             {/* Additional Info */}
             <div className="mt-2 bg-black/30 rounded-lg border border-yellow-400/30 p-2 2xl:p-2 2xl:h-[10%]">
-              <p className="text-yellow-400 font-semibold text-center text-xs md:text-sm xl:text-lg 2xl:text-base ">
+              <p className="text-yellow-400 font-semibold text-center text-xs md:text-sm xl:text-lg 2xl:text-xl ">
                 Đơn vị: 1000 VNĐ/chỉ | Cập nhật liên tục
               </p>
-              <p className="text-gray-300 text-center text-xs xl:text-lg 2xl:text-base">
+              <p className="text-gray-300 text-center text-xs xl:text-lg 2xl:text-lg ">
                 * Giá có thể thay đổi theo thời gian thực
               </p>
             </div>
