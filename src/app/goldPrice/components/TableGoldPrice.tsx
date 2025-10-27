@@ -61,10 +61,10 @@ console.log('Table: goldPrice state updated:', goldPrice);
       {/* Main Content */}
       <div className="flex-grow bg-gradient-to-br from-[#a52a2a] to-[#8b0000] p-2 md:p-3 2xl:p-4 text-white font-sans flex flex-col 2xl:h-[calc(100vh-120px)] 2xl:overflow-hidden">
       <div className="relative bg-yellow-400/10 rounded-lg p-2 2xl:p-2 border flex justify-center items-center border-yellow-400/30">
-           <p className="text-lg md:text-xl xl:text-3xl 2xl:text-4xl pr-10  font-bold text-yellow-400 mb-1">
+           <p className="text-lg md:text-xl xl:text-3xl 2xl:text-4xl pr-16 mr-36  font-bold text-yellow-400 mb-1">
                          BẢNG GIÁ VÀNG HÔM NAY
                    </p>  
-        <div className="absolute right-2 text-xs md:text-sm xl:text-lg 2xl:text-4xl text-gray-300">
+        <div className="absolute right-2 text-xs md:text-sm xl:text-lg 2xl:text-7xl text-gray-300">
                           <LiveClock />
                           </div>
          </div>
