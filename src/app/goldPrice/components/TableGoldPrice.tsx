@@ -66,7 +66,7 @@ console.log('Table: goldPrice state updated:', goldPrice);
                    </p>  
         <div className="absolute right-2 text-xs md:text-sm xl:text-lg 2xl:text-4xl text-gray-300">
                           <LiveClock />
-                 </div>
+                          </div>
          </div>
 
         
