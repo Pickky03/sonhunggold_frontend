@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 import { motion } from 'framer-motion';
 import { jwtDecode } from 'jwt-decode';
 import { useEffect } from 'react';
+import axios from 'axios';
 
 type FieldType = {
   email?: string;
@@ -79,9 +80,10 @@ export default function LoginForm() {
       } else {
         router.push('/goldPrice');
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Login error:', error);
-      toast.error(error?.response?.data?.message || 'Lỗi đăng nhập!');
+      const message = axios.isAxiosError(error) ? error.response?.data?.message : 'Lỗi đăng nhập!';
+      toast.error(message || 'Lỗi đăng nhập!');
     }
   };
 
