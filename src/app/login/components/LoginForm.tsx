@@ -1,63 +1,88 @@
 'use client';
 
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, Checkbox } from 'antd';
 import type { FormProps } from 'antd';
 import { login } from '@/services/LoginService';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
 import { jwtDecode } from 'jwt-decode';
+import { useEffect } from 'react';
 
 type FieldType = {
   email?: string;
   password?: string;
+  remember?: boolean;
 };
 
 export default function LoginForm() {
   const router = useRouter();
+  const [form] = Form.useForm();
 
+  /* ===============================
+     LOAD TÀI KHOẢN ĐÃ GHI NHỚ
+  =============================== */
+  useEffect(() => {
+    const saved = localStorage.getItem('remember_account');
+    if (saved) {
+      const data = JSON.parse(saved);
+      form.setFieldsValue({
+        email: data.email,
+        password: data.password,
+        remember: true,
+      });
+    }
+  }, [form]);
+
+  /* ===============================
+     SUBMIT LOGIN
+  =============================== */
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     try {
       const res = await login(values.email!, values.password!);
-
       const token = res.accessToken || res.token || res.access_token;
 
-      if (token) {
-        localStorage.setItem('accessToken', token);
-
-        try {
-          // Sửa lỗi kiểu dữ liệu khi giải mã token
-          const decoded = jwtDecode<{ role?: string }>(token);
-          const userRole = decoded?.role ? decoded.role.toLowerCase() : undefined;
-
-          if (userRole) {
-            localStorage.setItem('userRole', userRole);
-          }
-
-          toast.success(' Đăng nhập thành công!');
-
-          if (userRole === 'admin') {
-            router.push('/dashboard');
-          } else {
-            router.push('/goldPrice');
-          }
-        } catch (err) {
-          console.error(' Lỗi giải mã token:', err);
-          toast.error('Không thể xác định vai trò người dùng!');
-        }
-      } else {
+      if (!token) {
         toast.error('Đăng nhập thất bại: Không tìm thấy token!');
+        return;
       }
-    } catch (error) {
-      console.error('Login error:', error);
-      // @ts-expect-error error có thể không có thuộc tính response do kiểu dữ liệu không xác định từ phía server
-      const errorMessage = error?.response?.data?.message || 'Lỗi đăng nhập!';
-      toast.error(errorMessage);
-    }
-  };
 
-  const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+      // Lưu token
+      localStorage.setItem('accessToken', token);
+
+      // Ghi nhớ đăng nhập
+      if (values.remember) {
+        localStorage.setItem(
+          'remember_account',
+          JSON.stringify({
+            email: values.email,
+            password: values.password, // ⚠ demo / nội bộ
+          })
+        );
+      } else {
+        localStorage.removeItem('remember_account');
+      }
+
+      // Giải mã role
+      const decoded = jwtDecode<{ role?: string }>(token);
+      const userRole = decoded?.role?.toLowerCase();
+
+      if (userRole) {
+        localStorage.setItem('userRole', userRole);
+      }
+
+      toast.success('Đăng nhập thành công!');
+
+      // Điều hướng
+      if (userRole === 'admin') {
+        router.push('/dashboard');
+      } else {
+        router.push('/goldPrice');
+      }
+    } catch (error: any) {
+      console.error('Login error:', error);
+      toast.error(error?.response?.data?.message || 'Lỗi đăng nhập!');
+    }
   };
 
   const formItemVariants = {
@@ -74,16 +99,15 @@ export default function LoginForm() {
 
   return (
     <Form
+      form={form}
       name="login"
       layout="vertical"
-      initialValues={{ remember: true }}
       onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
       autoComplete="off"
       size="large"
       className="w-full"
     >
-      {/* Email */}
+      {/* EMAIL */}
       <motion.div custom={0} initial="hidden" animate="visible" variants={formItemVariants}>
         <div className="text-[#DAA520] mb-2">Email</div>
         <Form.Item<FieldType>
@@ -102,9 +126,9 @@ export default function LoginForm() {
         </Form.Item>
       </motion.div>
 
-      {/* Password */}
+      {/* PASSWORD */}
       <motion.div custom={1} initial="hidden" animate="visible" variants={formItemVariants}>
-        <div className="text-[#DAA520]  mb-2">Mật khẩu</div>
+        <div className="text-[#DAA520] mb-2">Mật khẩu</div>
         <Form.Item<FieldType>
           name="password"
           rules={[{ required: true, message: 'Vui lòng nhập mật khẩu!' }]}
@@ -118,8 +142,21 @@ export default function LoginForm() {
         </Form.Item>
       </motion.div>
 
-      {/* Submit button */}
-      <motion.div custom={3} initial="hidden" animate="visible" variants={formItemVariants} className="mt-8">
+      {/* REMEMBER ME */}
+      <motion.div custom={2} initial="hidden" animate="visible" variants={formItemVariants}>
+        <Form.Item name="remember" valuePropName="checked" className="text-[#DAA520]">
+          <Checkbox>Nhớ đăng nhập</Checkbox>
+        </Form.Item>
+      </motion.div>
+
+      {/* SUBMIT */}
+      <motion.div
+        custom={3}
+        initial="hidden"
+        animate="visible"
+        variants={formItemVariants}
+        className="mt-8"
+      >
         <Form.Item>
           <Button
             type="primary"
